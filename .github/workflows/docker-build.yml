@@ -11,6 +11,7 @@ env:
 
 jobs:
   cpu-base:
+    if: false
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -84,12 +85,13 @@ jobs:
       fail-fast: false
       matrix:
         build:
-        - {latest: "false", cuda: "11.8.0-base"}
-        - {latest: "false", cuda: "11.8.0-cudnn8-runtime"}
-        - {latest: "false", cuda: "11.8.0-cudnn8-devel"}
-        - {latest: "false", cuda: "12.1.1-base"}
-        - {latest: "false", cuda: "12.1.1-cudnn8-runtime"}
-        - {latest: "false", cuda: "12.1.1-cudnn8-devel"}
+         - {latest: "false", cuda: ""}
+        # - {latest: "false", cuda: "11.8.0-base"}
+        # - {latest: "false", cuda: "11.8.0-cudnn8-runtime"}
+        # - {latest: "false", cuda: "11.8.0-cudnn8-devel"}
+        # - {latest: "false", cuda: "12.1.1-base"}
+        # - {latest: "false", cuda: "12.1.1-cudnn8-runtime"}
+        # - {latest: "false", cuda: "12.1.1-cudnn8-devel"}
 
     steps:
       -
@@ -151,6 +153,7 @@ jobs:
           tags: ${{ env.TAGS }}
 
   amd-base:
+    if: false
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
