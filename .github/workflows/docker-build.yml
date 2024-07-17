@@ -145,7 +145,8 @@ jobs:
         with:
           context: build
           build-args: |
-            IMAGE_BASE=pytorch/pytorch:2.2.0-cuda12.1-cudnn8-devel # nvidia/cuda:${{ matrix.build.cuda }}-ubuntu${{ env.UBUNTU_VERSION }}
+           #IMAGE_BASE=nvidia/cuda:${{ matrix.build.cuda }}-ubuntu${{ env.UBUNTU_VERSION }}
+            IMAGE_BASE=pytorch/pytorch:2.2.0-cuda12.1-cudnn8-devel
             XPU_TARGET=NVIDIA_GPU
             CUDA_STRING=${{ matrix.build.cuda }}
           push: true
