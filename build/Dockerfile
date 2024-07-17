@@ -1,4 +1,4 @@
-ARG IMAGE_BASE="nvidia/cuda:11.8.0-base-ubuntu22.04"
+ARG IMAGE_BASE="pytorch/pytorch:2.2.0-cuda12.1-cudnn8-devel"
 
 # Caddy build
 FROM ubuntu:22.04 as caddybuilder
