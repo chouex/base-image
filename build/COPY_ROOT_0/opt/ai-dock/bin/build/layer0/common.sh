@@ -109,7 +109,7 @@ touch /etc/rclone/rclone.conf
 
 export SYNCTHING_VERSION="$(curl -fsSL "https://api.github.com/repos/syncthing/syncthing/releases/latest" \
             | jq -r '.tag_name' | sed 's/[^0-9\.\-]*//g')"
-#env-store SYNCTHING_VERSION
+env-store SYNCTHING_VERSION
 
 SYNCTHING_URL="https://github.com/syncthing/syncthing/releases/download/v${SYNCTHING_VERSION}/syncthing-linux-amd64-v${SYNCTHING_VERSION}.tar.gz"
 mkdir /opt/syncthing/
