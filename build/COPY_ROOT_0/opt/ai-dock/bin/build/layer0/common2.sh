@@ -11,59 +11,57 @@ dpkg --add-architecture i386
 apt-get update
 #apt-get upgrade -y --no-install-recommends
 
-apt install -y git jq nano rsync sudo tmux unzip wget curl 
-
 # System packages
-# $APT_INSTALL \
-#     acl \
-#     apt-transport-https \
-#     apt-utils \
-#     bc \
-#     build-essential \
-#     bzip2 \
-#     ca-certificates \
-#     cmake \
-#     curl \
-#     dos2unix \
-#     fakeroot \
-#     file \
-#     fonts-dejavu \
-#     fonts-freefont-ttf \
-#     fuse3 \
-#     git \
-#     git-lfs \
-#     gnupg \
-#     gpg \
-#     gzip \
-#     inotify-tools \
-#     jq \
-#     language-pack-en \
-#     less \
-#     libcap2-bin \
-#     libelf1 \
-#     libgl1-mesa-glx \
-#     libglib2.0-0 \
-#     libtcmalloc-minimal4 \
-#     lsb-release \
-#     lsof \
-#     man \
-#     mlocate \
-#     net-tools \
-#     nano \
-#     pkg-config \
-#     psmisc \
-#     rsync \
-#     software-properties-common \
-#     ssl-cert \
-#     sudo \
-#     tmux \
-#     tzdata \
-#     unar \
-#     unzip \
-#     vim \
-#     wget \
-#     zip \
-#     zstd
+no | $APT_INSTALL \
+    acl \
+    apt-transport-https \
+    apt-utils \
+    bc \
+    build-essential \
+    bzip2 \
+    ca-certificates \
+    cmake \
+    curl \
+    dos2unix \
+    fakeroot \
+    file \
+    fonts-dejavu \
+    fonts-freefont-ttf \
+    fuse3 \
+    git \
+    git-lfs \
+    gnupg \
+    gpg \
+    gzip \
+    inotify-tools \
+    jq \
+    language-pack-en \
+    less \
+    libcap2-bin \
+    libelf1 \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libtcmalloc-minimal4 \
+    lsb-release \
+    lsof \
+    man \
+    mlocate \
+    net-tools \
+    nano \
+    pkg-config \
+    psmisc \
+    rsync \
+    software-properties-common \
+    ssl-cert \
+    sudo \
+    tmux \
+    tzdata \
+    unar \
+    unzip \
+    vim \
+    wget \
+    zip \
+    zstd
     
 ln -sf $(ldconfig -p | grep -Po "libtcmalloc_minimal.so.\d" | head -n 1) \
         /lib/x86_64-linux-gnu/libtcmalloc.so
@@ -109,7 +107,7 @@ touch /etc/rclone/rclone.conf
 
 export SYNCTHING_VERSION="$(curl -fsSL "https://api.github.com/repos/syncthing/syncthing/releases/latest" \
             | jq -r '.tag_name' | sed 's/[^0-9\.\-]*//g')"
-#env-store SYNCTHING_VERSION
+env-store SYNCTHING_VERSION
 
 SYNCTHING_URL="https://github.com/syncthing/syncthing/releases/download/v${SYNCTHING_VERSION}/syncthing-linux-amd64-v${SYNCTHING_VERSION}.tar.gz"
 mkdir /opt/syncthing/
@@ -120,7 +118,6 @@ else
     echo "Failed to fetch syncthing. Exiting build"
     exit 1
 fi
-
 # Install node version manager and latest nodejs
 # export NVM_DIR=/opt/nvm
 # env-store NVM_DIR
@@ -138,4 +135,4 @@ printf "source /opt/ai-dock/etc/environment.sh\n" >> /etc/bash.bashrc
 printf "ready-test\n" >> /root/.bashrc
 
 # Give our runtime user full access (added to ai-dock group)
-#/opt/ai-dock/bin/fix-permissions.sh -o container
+/opt/ai-dock/bin/fix-permissions.sh -o container
