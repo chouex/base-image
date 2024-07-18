@@ -52,6 +52,11 @@ function start() {
     syncthing generate
 
     sed -i '/^\s*<listenAddress>/d' "/home/${USER_NAME}/.local/state/syncthing/config.xml"
+    
+    until [ ! test -f "/home/${USER_NAME}/.local/state/syncthing/ready" ]; do
+        printf "Waiting for syncthing config...\n"
+        sleep 1
+    done
 
     syncthing --gui-address="127.0.0.1:${LISTEN_PORT}" --gui-apikey="${WEB_TOKEN}" &
     syncthing_pid=$!
