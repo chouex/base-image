@@ -68,6 +68,25 @@ RUN apt update && apt install -y supervisor
 
 COPY --chown=0:1111 ./COPY_ROOT_0/ /
 
+ARG CUDA_STRING
+ARG ROCM_STRING
+
+#FROM xxx as next
+
+# Use build scripts to ensure we can build all targets from one Dockerfile in a single layer.
+# Don't put anything heavy in here - We can use multi-stage building above if necessary.
+RUN set -eo pipefail && /opt/ai-dock/bin/build/layer0/init.sh | tee /var/log/build.log
+
+
+
+RUN useradd -m user && echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN mkdir -p -m777  /workspace/kohya_ss/ /assets /output /workspace/storage/stable_diffusion/models/ckpt/ /home/user/.local/state/syncthing/
+
+RUN git clone https://github.com/kohya-ss/sd-scripts --depth=1 /workspace/kohya_ss/sd-scripts/
+RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt 
+
+
+
 
 # Keep init.sh as-is and place additional logic in /opt/ai-dock/bin/preflight.d
 CMD ["init.sh"]
