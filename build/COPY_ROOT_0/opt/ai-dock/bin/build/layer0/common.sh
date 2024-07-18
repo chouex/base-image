@@ -11,7 +11,10 @@ dpkg --add-architecture i386
 apt-get update
 #apt-get upgrade -y --no-install-recommends
 
-apt install -y git jq nano rsync sudo tmux unzip wget curl 
+apt install -y git jq nano rsync sudo tmux unzip wget curl libelf1 \
+     libgl1-mesa-glx \
+     libglib2.0-0 \
+     libtcmalloc-minimal4
 
 # System packages
 # $APT_INSTALL \
