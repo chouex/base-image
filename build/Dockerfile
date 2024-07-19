@@ -84,7 +84,7 @@ RUN mkdir -p -m777  /workspace/kohya_ss/ /assets /output /workspace/storage/stab
 
 RUN git clone https://github.com/kohya-ss/sd-scripts --depth=1 /workspace/kohya_ss/sd-scripts/
 RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt && pip install xformers==0.0.24 torch==2.2.0 --index-url https://download.pytorch.org/whl/cu121 && pip cache purge
-RUN accelerate config default
+RUN accelerate config --mixed_precision=fp16
 
 
 # Keep init.sh as-is and place additional logic in /opt/ai-dock/bin/preflight.d
