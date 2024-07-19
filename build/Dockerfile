@@ -83,7 +83,8 @@ RUN useradd -m user && echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN mkdir -p -m777  /workspace/kohya_ss/ /assets /output /workspace/storage/stable_diffusion/models/ckpt/ /home/user/.local/state/syncthing/
 
 RUN git clone https://github.com/kohya-ss/sd-scripts --depth=1 /workspace/kohya_ss/sd-scripts/
-RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt && pip install xformers==0.0.23.post1 --index-url https://download.pytorch.org/whl/cu121
+RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt
+#&& pip install xformers==0.0.23.post1 --index-url https://download.pytorch.org/whl/cu121
 RUN accelerate config default
 
 
