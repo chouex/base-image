@@ -84,8 +84,10 @@ RUN mkdir -p -m777  /workspace/kohya_ss/ /assets /output /workspace/storage/stab
 
 RUN git clone https://github.com/kohya-ss/sd-scripts --depth=1 /workspace/kohya_ss/sd-scripts/
 RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt && pip install xformers==0.0.24 torch==2.2.0 --index-url https://download.pytorch.org/whl/cu121 && pip cache purge
-#RUN accelerate config default --mixed_precision fp16
-
+RUN git clone https://github.com/comfyanonymous/ComfyUI --depth=1 /workspace/ComfyUI/
+RUN git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Custom-Scripts
+RUN git clone https://github.com/ltdrdata/ComfyUI-Manager --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Manager
+RUN cd /workspace/ComfyUI/ && pip install -r requirements.txt && pip cache purge && rm -rf output && mkdir /output/comfy/ && ln -s /output/comfy/ output
 
 # Keep init.sh as-is and place additional logic in /opt/ai-dock/bin/preflight.d
 CMD ["init.sh"]
