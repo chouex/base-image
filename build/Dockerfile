@@ -88,7 +88,7 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI --depth=1 /workspace/Com
 RUN git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Custom-Scripts
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Manager
 RUN cd /workspace/ComfyUI/ && pip install -r requirements.txt && pip cache purge && rm -rf output && mkdir /output/comfy/ && ln -s /output/comfy/ output
-RUN pip install pycryptodome rsa cryptography
+RUN pip install pycryptodome rsa cryptography && apt install aria2 -y
 
 # Keep init.sh as-is and place additional logic in /opt/ai-dock/bin/preflight.d
 CMD ["init.sh"]
