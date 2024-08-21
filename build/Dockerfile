@@ -83,7 +83,7 @@ RUN useradd -m user && echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN mkdir -p -m777  /workspace/kohya_ss/ /assets /output /workspace/storage/stable_diffusion/models/ckpt/ /home/user/.local/state/syncthing/
 
 RUN git clone https://github.com/kohya-ss/sd-scripts --depth=1 /workspace/kohya_ss/sd-scripts/
-RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt && pip install xformers==0.0.24 torch==2.2.0 --index-url https://download.pytorch.org/whl/cu121 && pip cache purge
+RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt && if [ "$XPU_TARGET" = "GPU_NVIDIA" ]; then pip install xformers==0.0.24 torch==2.2.0 --index-url https://download.pytorch.org/whl/cu121 fi  && pip cache purge
 RUN git clone https://github.com/comfyanonymous/ComfyUI --depth=1 /workspace/ComfyUI/
 RUN git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Custom-Scripts
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Manager
