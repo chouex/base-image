@@ -20,7 +20,7 @@ ARG IMAGE_BASE="pytorch/pytorch:2.2.0-cuda12.1-cudnn8-devel"
 
 # For build automation - Allows building from any Debian-based image
 
-FROM ${IMAGE_BASE}
+FROM ${IMAGE_BASE} AS main
 
 # System libs are handled in /etc/ld.so.conf.d
 # Python environments only to use this variable
@@ -91,4 +91,10 @@ RUN cd /workspace/ComfyUI/ && pip install -r requirements.txt && pip cache purge
 RUN pip install pycryptodome rsa cryptography lycoris-lora && apt install aria2 -y
 
 # Keep init.sh as-is and place additional logic in /opt/ai-dock/bin/preflight.d
+CMD ["init.sh"]
+
+FROM main AS addon
+ARG CKPT
+RUN wget -qnc --content-disposition --show-progress -e dotbytes="${3:-4M}" -P  "/workspace/storage/stable_diffusion/models/ckpt/" $CKPT
+
 CMD ["init.sh"]
