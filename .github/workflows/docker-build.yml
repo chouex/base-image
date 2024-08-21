@@ -79,6 +79,7 @@ jobs:
           tags: ${{ env.TAGS }}
     
   nvidia-base:
+    if: false
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
