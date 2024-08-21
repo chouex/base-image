@@ -77,8 +77,6 @@ jobs:
           # Avoids unknown/unknown architecture and extra metadata
           provenance: false
           tags: ${{ env.TAGS }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
     
   nvidia-base:
     runs-on: ubuntu-latest
