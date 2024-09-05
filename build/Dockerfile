@@ -87,6 +87,7 @@ RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt && if [
 RUN git clone https://github.com/comfyanonymous/ComfyUI --depth=1 /workspace/ComfyUI/
 RUN git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Custom-Scripts
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Manager
+RUN git clone https://github.com/ltdrdata/ComfyUI-Inspire-Pack --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Inspire-Pack && cd /workspace/ComfyUI/custom_nodes/ComfyUI-Inspire-Pack && pip install -r requirements.txt
 RUN cd /workspace/ComfyUI/ && pip install -r requirements.txt && pip cache purge && rm -rf output && mkdir /output/comfy/ && ln -s /output/comfy/ output
 RUN pip install pycryptodome rsa cryptography lycoris-lora && apt install aria2 -y
 
