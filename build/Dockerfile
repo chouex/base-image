@@ -98,6 +98,5 @@ FROM main AS addon
 ARG CKPT
 ARG CKPT2
 RUN /bin/bash /opt/ai-dock/bin/build/layer0/addon.sh
-RUN wget -qnc --content-disposition --show-progress -e dotbytes="${3:-4M}" -P  "/workspace/storage/stable_diffusion/models/ckpt/" $CKPT2
 
 CMD ["init.sh"]
