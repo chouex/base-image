@@ -170,11 +170,11 @@ jobs:
             IMAGE_BASE=pytorch/pytorch:2.2.0-cuda12.1-cudnn8-devel
             XPU_TARGET=NVIDIA_GPU
             CUDA_STRING=${{ matrix.build.cuda }}
-            CKPT=${{ secrets.CKPT }}
+            CKPT=${{ secrets.CKPT2 }}
           push: true
           provenance: false
           target: addon
-          tags: ${{ env.TAGS }}-addon
+          tags: ${{ env.TAGS }}-addon2
 
   amd-base:
     if: false
