@@ -96,7 +96,6 @@ CMD ["init.sh"]
 
 FROM main AS addon
 ARG CKPT
-ARG CKPT2
 RUN /bin/bash /opt/ai-dock/bin/build/layer0/addon.sh
 
 CMD ["init.sh"]

@@ -171,7 +171,6 @@ jobs:
             XPU_TARGET=NVIDIA_GPU
             CUDA_STRING=${{ matrix.build.cuda }}
             CKPT=${{ secrets.CKPT }}
-            CKPT2=${{ secrets.CKPT2 }}
           push: true
           provenance: false
           target: addon
