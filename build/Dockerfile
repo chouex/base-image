@@ -86,6 +86,7 @@ RUN git clone https://github.com/kohya-ss/sd-scripts --depth=1 /workspace/kohya_
 RUN cd /workspace/kohya_ss/sd-scripts && pip install -r requirements.txt && pip install xformers==0.0.24 torch==2.2.0 --index-url https://download.pytorch.org/whl/cu121 && pip cache purge
 RUN git clone https://github.com/comfyanonymous/ComfyUI --depth=1 /workspace/ComfyUI/
 RUN git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Custom-Scripts
+RUN git clone https://github.com/cubiq/ComfyUI_IPAdapter_plus --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI_IPAdapter_plus
 RUN git clone https://github.com/ltdrdata/ComfyUI-Manager --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Manager
 RUN git clone https://github.com/ltdrdata/ComfyUI-Inspire-Pack --depth=1 /workspace/ComfyUI/custom_nodes/ComfyUI-Inspire-Pack && cd /workspace/ComfyUI/custom_nodes/ComfyUI-Inspire-Pack && pip install -r requirements.txt
 RUN cd /workspace/ComfyUI/ && pip install -r requirements.txt && pip cache purge && rm -rf output && mkdir /output/comfy/ && ln -s /output/comfy/ output
